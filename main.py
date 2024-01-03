@@ -5,7 +5,7 @@ CHUNK=1024
 FORMAT=pyaudio.paInt16
 CHANNELS=1
 RATE=16000
-delays=2
+delays=5
 
 p_in=pyaudio.PyAudio()
 p_out=pyaudio.PyAudio()
@@ -32,4 +32,5 @@ while(True):
     i=int(i%RATE/CHUNK*delays)
     stream_out.write(frames[i])
     frames[i]=stream_in.read(CHUNK)
+    i=i+1
 
