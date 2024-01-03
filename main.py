@@ -24,13 +24,15 @@ stream_out=p_out.open(format=FORMAT,
 
 frames=[]
 
-for i in range(0,int(RATE/CHUNK*delays)):
+for i in range(0,int(RATE/CHUNK*delays+5)):
     data=stream_in.read(CHUNK)
     frames.append(data)
 
+i=0
 while(True):
-    i=int(i%RATE/CHUNK*delays)
+    
     stream_out.write(frames[i])
     frames[i]=stream_in.read(CHUNK)
     i=i+1
+    i=int(i%(RATE/CHUNK*delays))
 
